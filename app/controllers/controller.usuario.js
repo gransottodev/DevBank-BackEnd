@@ -54,10 +54,9 @@ async function Login(req, res) {
       email: user.email,
       age: user.age,
       phoneNumber: user.phoneNumber,
-      token,
     };
 
-    res.status(200).json(data);
+    res.status(200).json({token, user: data});
   } else {
     res.status(500).json({ error: "Wrong Password!" });
   }
@@ -65,9 +64,7 @@ async function Login(req, res) {
 
 async function GetById(req, res) {
   const id = req.id;
-  if (req.params.id !== id) {
-    return res.status(401).json({ error: "Unauthorized!" });
-  }
+
   connection();
 
   const data = await User.findById(id, '-password');
