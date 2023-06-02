@@ -4,8 +4,10 @@ import controllerCount from '../controllers/controller.count.js'
 
 const countRouter = Router()
 
-countRouter.get('/v1/mycounters/:id', verifyJWT, controllerCount.GetCounters)
+countRouter.get('/v1/mycounters', verifyJWT, controllerCount.GetCounters)
 countRouter.post('/v1/counter', verifyJWT, controllerCount.CreateCount)
-countRouter.put('/v1/counter/:id', verifyJWT, controllerCount.InsertCount)
+countRouter.get('/v1/counter/:id', verifyJWT, controllerCount.GetCounter)
+countRouter.put('/v1/counter', verifyJWT, controllerCount.InsertCount)
+countRouter.delete('/v1/counter', verifyJWT, controllerCount.DeleteCounter)
 
 export default countRouter;
